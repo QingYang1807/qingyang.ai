@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倾阳AI - 智能科技的未来</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 导入字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Neue+Machina:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 调试样式 */
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            left: -5px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            padding: 15px;
+            font-family: monospace;
+            z-index: 9999;
+            max-width: 400px;
+            max-height: 300px;
+            overflow: auto;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            /* 默认隐藏调试信息 */
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        /* 调试标签按钮 */
+        .debug-tab {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10000;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border: 1px solid #00ff00;
+            border-left: none;
+            font-size: 12px;
+        }
+        
+        /* 显示调试信息时的样式 */
+        .debug-info.show {
+            transform: translateX(0);
+        }
+        
+        /* 确保画布可见 */
+        canvas {
+            display: block !important;
+            opacity: 1 !important;
+        }
+        
+        /* 调整价值宣言区域样式 */
+        .value-statement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 80%;
+            max-width: 800px;
+        }
+        
+        .light-cone-text {
+            background: rgba(12, 26, 47, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(42, 110, 245, 0.3);
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof THREE === 'undefined') {
+                console.error('THREE.js not loaded!');
+                alert('THREE.js library failed to load. Please check your internet connection.');
+            } else {
+                console.log('THREE.js loaded successfully, version:', THREE.REVISION);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="debug-tab">▶</div>
+    <div class="debug-info">
+        <h3>调试信息</h3>
+        <div id="debug-output">页面加载中...</div>
+    </div>
+
+    <!-- 画布层容器 -->
+    <div class="canvas-container">
+        <canvas id="particleBackground"></canvas>
+        <canvas id="holographicMatrix"></canvas>
+        <canvas id="spaceTunnel"></canvas>
+    </div>
+
+    <!-- 内容层 -->
+    <main class="content">
+        <!-- 品牌Logo区域 -->
+        <section class="brand-section">
+            <div id="brandLogo" class="brand-logo">倾阳AI</div>
+        </section>
+
+        <!-- 能力矩阵区域 -->
+        <section class="matrix-section">
+            <div class="matrix-container">
+                <!-- 菱形信息模块将由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 价值宣言区域 -->
+        <section class="value-statement">
+            <div class="light-cone-text">
+                <h2>重新定义人工智能边界</h2>
+                <p>从<span class="keyword">深度学习</span>到<span class="keyword">认知计算</span>，<span class="highlight-keyword">QingYang AI</span>引领下一代技术革命</p>
+            </div>
+        </section>
+
+        <!-- 案例展示区域 -->
+        <section class="showcase-section">
+            <div class="hypercube-container">
+                <!-- 超立方体案例将由JS动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 动态水印 -->
+    <div class="dynamic-watermark">Qingyang.AI</div>
+
+    <!-- 加载脚本 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+    // =====================================================
+    // 初始化变量与状态管理
+    // =====================================================
+    let devicePerformanceLevel = 'high'; // 设备性能级别，默认高
+    let particleSystemObj = null;
+    let holographicMatrixObj = null;
+    let spaceTunnelObj = null;
+    let brandAnimationObj = null;
+    let clickCount = 0; // 品牌logo点击计数器
+    let scrollProgress = 0;
+
+    // =====================================================
+    // 粒子背景系统
+    // =====================================================
+    class ParticleSystem {
+        constructor(canvas) {
+            debugLog("初始化粒子系统...");
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
+            this.particles = [];
+            this.particleCount = devicePerformanceLevel === 'high' ? 2000 : 
+                              devicePerformanceLevel === 'medium' ? 1000 : 500;
+            this.mouseX = 0;
+            this.mouseY = 0;
+            this.gravitySensitivity = 120;
+            
+            this.Initialize();
+            this.BindEvents();
+        }
+        
+        Initialize() {
+            this.AdjustSize();
+            
+            // 创建粒子
+            for (let i = 0; i < this.particleCount; i++) {
+                this.particles.push({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    size: Math.random() * 2 + 0.5,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25,
+                    color: this.GetRandomColor(),
+                    originalX: Math.random() * this.canvas.width,
+                    originalY: Math.random() * this.canvas.height
+                });
+            }
+            
+            this.AnimationLoop();
+            debugLog(`创建了 ${this.particleCount} 个粒子`);
+        }
+        
+        AdjustSize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+        
+        BindEvents() {
+            window.addEventListener('resize', () => this.AdjustSize());
+            
+            window.addEventListener('mousemove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            });
+            
+            // 触摸设备支持
+            window.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    this.mouseX = e.touches[0].clientX;
+                    this.mouseY = e.touches[0].clientY;
+                }
+            });
+        }
+        
+        GetRandomColor() {
+            const colors = [
+                { r: 42, g: 110, b: 245 }, // 科技蓝
+                { r: 125, g: 78, b: 255 }, // 量子紫
+                { r: 0, g: 240, b: 255 }  // 霓虹蓝
+            ];
+            
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const opacity = Math.random() * 0.5 + 0.2;
+            
+            return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+        }
+        
+        CalculateGravityEffect(particle) {
+            const dx = this.mouseX - particle.x;
+            const dy = this.mouseY - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // 在一定范围内应用引力影响
+            if (distance < this.gravitySensitivity) {
+                const force = this.gravitySensitivity / (distance * distance);
+                
+                particle.speedX += (dx / distance) * force * 0.02;
+                particle.speedY += (dy / distance) * force * 0.02;
+            }
+            
+            // 添加返回力使粒子缓慢回到原始位置
+            const homeX = particle.originalX - particle.x;
+            const homeY = particle.originalY - particle.y;
+            
+            particle.speedX += homeX * 0.0005;
+            particle.speedY += homeY * 0.0005;
+            
+            // 应用阻尼
+            particle.speedX *= 0.98;
+            particle.speedY *= 0.98;
+        }
+        
+        UpdateParticles() {
+            for (let i = 0; i < this.particles.length; i++) {
+                const particle = this.particles[i];
+                
+                // 计算引力效果
+                this.CalculateGravityEffect(particle);
+                
+                // 更新位置
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+                
+                // 边界检查
+                if (particle.x < 0) particle.x = this.canvas.width;
+                if (particle.x > this.canvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = this.canvas.height;
+                if (particle.y > this.canvas.height) particle.y = 0;
+            }
+        }
+        
+        DrawParticles() {
+            // 清除画布
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // 绘制粒子
+            for (let i = 0; i < this.particles.length; i++) {
+                const particle = this.particles[i];
+                
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                this.ctx.fillStyle = particle.color;
+                this.ctx.fill();
+            }
+            
+            // 绘制粒子之间的连接线
+            this.DrawConnections();
+        }
+        
+        DrawConnections() {
+            const maxDistance = 100; // 最大连接距离
+            
+            this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            this.ctx.lineWidth = 0.5;
+            
+            for (let i = 0; i < this.particles.length; i++) {
+                const p1 = this.particles[i];
+                
+                for (let j = i + 1; j < this.particles.length; j++) {
+                    const p2 = this.particles[j];
+                    
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < maxDistance) {
+                        // 根据距离计算线条透明度
+                        const alpha = 1 - (distance / maxDistance);
+                        this.ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.2})`;
+                        
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(p1.x, p1.y);
+                        this.ctx.lineTo(p2.x, p2.y);
+                        this.ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        AnimationLoop() {
+            // 更新粒子位置
+            this.UpdateParticles();
+            
+            // 绘制粒子
+            this.DrawParticles();
+            
+            // 请求下一帧
+            requestAnimationFrame(() => this.AnimationLoop());
+        }
+    }
+
+    // =====================================================
+    // 品牌Logo动画系统
+    // =====================================================
+    class BrandLogoAnimation {
+        constructor(element) {
+            this.element = element;
+            this.originalText = element.textContent;
+            this.particles = [];
+            this.completed = false;
+            
+            this.Initialize();
+        }
+        
+        Initialize() {
+            debugLog("初始化品牌Logo动画...");
+            // 清空元素并准备粒子
+            this.element.textContent = '';
+            this.element.style.opacity = '1';
+            
+            // 创建粒子文本
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particle-container';
+            particleContainer.style.position = 'relative';
+            particleContainer.style.width = '100%';
+            particleContainer.style.height = '100%';
+            
+            this.element.appendChild(particleContainer);
+            
+            // 创建最终文本（隐藏）
+            const finalText = document.createElement('div');
+            finalText.className = 'final-text';
+            finalText.textContent = this.originalText;
+            finalText.style.opacity = '0';
+            finalText.style.position = 'absolute';
+            finalText.style.top = '0';
+            finalText.style.left = '0';
+            finalText.style.width = '100%';
+            finalText.style.height = '100%';
+            finalText.style.background = 'linear-gradient(45deg, #2A6EF5, #7D4EFF)';
+            finalText.style.webkitBackgroundClip = 'text';
+            finalText.style.backgroundClip = 'text';
+            finalText.style.color = 'transparent';
+            finalText.style.fontSize = 'inherit';
+            finalText.style.fontWeight = 'inherit';
+            finalText.style.display = 'flex';
+            finalText.style.justifyContent = 'center';
+            finalText.style.alignItems = 'center';
+            
+            this.element.appendChild(finalText);
+            
+            // 创建粒子
+            const particleCount = 200;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'logo-particle';
+                particle.style.position = 'absolute';
+                particle.style.width = '3px';
+                particle.style.height = '3px';
+                particle.style.borderRadius = '50%';
+                particle.style.backgroundColor = i % 2 === 0 ? '#2A6EF5' : '#7D4EFF';
+                
+                // 随机初始位置 - 分散在屏幕上
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                particleContainer.appendChild(particle);
+                
+                // 计算粒子的目标位置
+                // 在实际实现中，我们会计算字母形状的确切位置
+                // 这里使用简化版本，让粒子汇聚到中心
+                const targetX = window.innerWidth / 2 - particleContainer.offsetWidth / 2 + Math.random() * 100 - 50;
+                const targetY = window.innerHeight / 2 - particleContainer.offsetHeight / 2 + Math.random() * 20 - 10;
+                
+                this.particles.push({
+                    element: particle,
+                    x: x,
+                    y: y,
+                    targetX: targetX,
+                    targetY: targetY,
+                    speed: Math.random() * 0.05 + 0.02,
+                    size: Math.random() * 2 + 1
+                });
+            }
+            
+            // 开始动画
+            this.AnimationLoop();
+            
+            // 设置点击事件监听器
+            this.element.addEventListener('click', () => this.HandleClick());
+        }
+        
+        AnimationLoop() {
+            let allArrived = true;
+            
+            for (let i = 0; i < this.particles.length; i++) {
+                const p = this.particles[i];
+                
+                // 计算到目标的距离
+                const dx = p.targetX - p.x;
+                const dy = p.targetY - p.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // 如果粒子尚未到达目标
+                if (distance > 0.5) {
+                    allArrived = false;
+                    
+                    // 移动粒子
+                    p.x += dx * p.speed;
+                    p.y += dy * p.speed;
+                    
+                    // 更新粒子位置
+                    p.element.style.left = `${p.x}px`;
+                    p.element.style.top = `${p.y}px`;
+                }
+            }
+            
+            // 如果所有粒子都已到达目标，显示最终文本
+            if (allArrived && !this.completed) {
+                this.completed = true;
+                
+                // 隐藏粒子，显示最终文本
+                setTimeout(() => {
+                    const particleContainer = this.element.querySelector('.particle-container');
+                    const finalText = this.element.querySelector('.final-text');
+                    
+                    particleContainer.style.opacity = '0';
+                    finalText.style.opacity = '1';
+                    
+                    debugLog("品牌Logo动画完成");
+                }, 500);
+            }
+            
+            // 继续动画循环
+            if (!this.completed) {
+                requestAnimationFrame(() => this.AnimationLoop());
+            }
+        }
+        
+        HandleClick() {
+            clickCount++;
+            
+            // 连续点击7次后触发彩蛋
+            if (clickCount >= 7) {
+                this.TriggerEasterEgg();
+                clickCount = 0;
+            }
+        }
+        
+        TriggerEasterEgg() {
+            debugLog('触发彩蛋：核心算法沙盒');
+            // 创建彩蛋内容
+            const easterEgg = document.createElement('div');
+            easterEgg.className = 'easter-egg';
+            easterEgg.style.position = 'fixed';
+            easterEgg.style.top = '0';
+            easterEgg.style.left = '0';
+            easterEgg.style.width = '100%';
+            easterEgg.style.height = '100%';
+            easterEgg.style.backgroundColor = 'rgba(12, 26, 47, 0.9)';
+            easterEgg.style.zIndex = '1000';
+            easterEgg.style.display = 'flex';
+            easterEgg.style.justifyContent = 'center';
+            easterEgg.style.alignItems = 'center';
+            easterEgg.style.flexDirection = 'column';
+            
+            easterEgg.innerHTML = `
+                <h2 style="color: #7D4EFF; font-size: 2rem; margin-bottom: 2rem;">核心算法沙盒已激活</h2>
+                <div class="algorithm-sandbox" style="width: 80%; height: 60%; border: 2px solid #2A6EF5; padding: 2rem; overflow: auto; background: rgba(0,0,0,0.3);">
+                    <pre style="color: #00F0FF; font-family: monospace; line-height: 1.5;">
+    // 倾阳AI核心算法示例
+    class QuantumNeuralNetwork {
+        constructor(layers, qubits) {
+            this.layers = layers;
+            this.qubits = qubits;
+            this.networkState = this.InitializeQuantumState();
+        }
+        
+        InitializeQuantumState() {
+            // 创建叠加态
+            console.log("初始化量子网络...");
+            return "处于叠加态的量子网络已就绪";
+        }
+        
+        ApplyQuantumGate(gateType) {
+            console.log(\`应用\${gateType}量子门...\`);
+            return "量子状态已更新";
+        }
+        
+        ExecuteQuantumInference(inputData) {
+            console.log("通过量子通道处理数据...");
+            return "量子计算已完成";
+        }
+    }
+
+    // 初始化倾阳核心引擎
+    const aiCoreEngine = new QuantumNeuralNetwork(7, 42);
+    console.log(aiCoreEngine.networkState);
+    console.log(aiCoreEngine.ApplyQuantumGate("Hadamard"));
+    console.log(aiCoreEngine.ExecuteQuantumInference("用户输入数据"));
+                    </pre>
+                </div>
+                <button style="margin-top: 2rem; padding: 0.5rem 2rem; background: #2A6EF5; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="this.parentNode.remove()">关闭</button>
+            `;
+            
+            document.body.appendChild(easterEgg);
+        }
+    }
+
+    // =====================================================
+    // 动态水印系统
+    // =====================================================
+    class DynamicWatermarkSystem {
+        constructor(element) {
+            debugLog("初始化动态水印...");
+            this.element = element;
+            this.text = element.textContent;
+            this.counter = 0;
+            
+            this.Initialize();
+        }
+        
+        Initialize() {
+            // 开始动画循环
+            setInterval(() => this.UpdateWatermark(), 100);
+            
+            // 每17秒更改一次结构
+            setInterval(() => this.RestructureText(), 17000);
+        }
+        
+        UpdateWatermark() {
+            this.counter += 0.05;
+            
+            // 创建波浪效果
+            const transform = `translateY(${Math.sin(this.counter) * 5}px) rotate(${Math.sin(this.counter * 0.5) * 2}deg)`;
+            this.element.style.transform = transform;
+        }
+        
+        RestructureText() {
+            // 保存原始文本
+            const originalText = this.text;
+            
+            // 文本改变动画
+            this.element.style.opacity = '0';
+            
+            setTimeout(() => {
+                // 重组文本字符
+                let newText = '';
+                const chars = originalText.split('');
+                
+                // 50%的概率保持原样，50%的概率重组
+                if (Math.random() > 0.5) {
+                    // 随机排序
+                    for (let i = chars.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [chars[i], chars[j]] = [chars[j], chars[i]];
+                    }
+                    
+                    // 每5秒后恢复
+                    setTimeout(() => {
+                        this.element.textContent = originalText;
+                        this.text = originalText;
+                    }, 5000);
+                }
+                
+                newText = chars.join('');
+                
+                this.element.textContent = newText;
+                this.text = newText;
+                
+                this.element.style.opacity = '0.2';
+            }, 500);
+        }
+    }
+
+    // =====================================================
+    // 页面初始化和事件处理
+    // =====================================================
+    function InitializePage() {
+        debugLog('初始化倾阳AI个人主页...');
+        
+        try {
+            // 检测设备性能
+            DetectDevicePerformance();
+            debugLog(`设备性能级别: ${devicePerformanceLevel}`);
+            
+            // 初始化粒子背景
+            const particleCanvas = document.getElementById('particleBackground');
+            if (particleCanvas) {
+                particleSystemObj = new ParticleSystem(particleCanvas);
+                debugLog('粒子系统已初始化');
+            } else {
+                debugLog('未找到粒子画布元素');
+            }
+            
+            // 初始化全息矩阵
+            const matrixCanvas = document.getElementById('holographicMatrix');
+            if (matrixCanvas && typeof HolographicMatrixSystem === 'function') {
+                holographicMatrixObj = new HolographicMatrixSystem(matrixCanvas);
+                debugLog('全息矩阵已初始化');
+            } else {
+                debugLog('未找到全息矩阵画布元素或类未定义');
+            }
+            
+            // 初始化时空隧道
+            const tunnelCanvas = document.getElementById('spaceTunnel');
+            if (tunnelCanvas && typeof SpaceTunnelSystem === 'function') {
+                spaceTunnelObj = new SpaceTunnelSystem(tunnelCanvas);
+                debugLog('时空隧道已初始化');
+            } else {
+                debugLog('未找到时空隧道画布元素或类未定义');
+            }
+            
+            // 初始化品牌Logo动画
+            const brandLogo = document.getElementById('brandLogo');
+            if (brandLogo) {
+                brandAnimationObj = new BrandLogoAnimation(brandLogo);
+                debugLog('品牌Logo动画已初始化');
+            } else {
+                debugLog('未找到品牌Logo元素');
+            }
+            
+            // 初始化动态水印
+            const watermark = document.querySelector('.dynamic-watermark');
+            if (watermark) {
+                new DynamicWatermarkSystem(watermark);
+                debugLog('动态水印已初始化');
+            } else {
+                debugLog('未找到水印元素');
+            }
+            
+            // 设置滚动监听
+            window.addEventListener('scroll', HandleScroll);
+            debugLog('滚动监听器已添加');
+            
+            debugLog('所有系统已成功初始化');
+        } catch (error) {
+            debugLog(`初始化过程中出错: ${error.message}`);
+            console.error("初始化错误:", error);
+        }
+    }
+
+    // 滚动处理函数
+    function HandleScroll() {
+        // 计算滚动进度
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress = scrollTop / totalHeight;
+        
+        // 在一定滚动进度后显示隧道效果
+        if (spaceTunnelObj && typeof spaceTunnelObj.SetVisibility === 'function') {
+            if (scrollProgress > 0.2) {
+                spaceTunnelObj.SetVisibility(true);
+                spaceTunnelObj.ActivateTunnelEffect((scrollProgress - 0.2) / 0.8); // 归一化进度
+            } else {
+                spaceTunnelObj.SetVisibility(false);
+            }
+        }
+        
+        // 视差滚动效果
+        ApplyParallaxScrollEffect(scrollProgress);
+    }
+
+    // 视差滚动效果
+    function ApplyParallaxScrollEffect(progress) {
+        // 获取所有需要应用视差效果的元素
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach((section, index) => {
+            const speed = index % 2 === 0 ? 0.5 : -0.5; // 交替方向
+            const yOffset = progress * 100 * speed;
+            section.style.transform = `translateY(${yOffset}px)`;
+        });
+        
+        // 特殊处理价值宣言区
+        const statement = document.querySelector('.value-statement');
+        if (statement) {
+            // 计算此区域的特定进度
+            const rect = statement.getBoundingClientRect();
+            const sectionProgress = 1 - Math.max(0, Math.min(1, rect.top / window.innerHeight));
+            
+            if (sectionProgress > 0) {
+                // 增加光锥文本效果
+                const text = statement.querySelector('.light-cone-text');
+                if (text) {
+                    text.style.transform = `perspective(1000px) rotateX(${sectionProgress * 5}deg)`;
+                    text.style.filter = `brightness(${1 + sectionProgress * 0.5})`;
+                }
+                
+                // 关键词脉冲效果
+                const keywords = statement.querySelectorAll('.highlight-keyword');
+                keywords.forEach(keyword => {
+                    keyword.style.textShadow = `0 0 ${5 + sectionProgress * 10}px rgba(125, 78, 255, ${sectionProgress * 0.8})`;
+                });
+            }
+        }
+    }
+
+    // 在DOM完全加载后初始化页面
+    window.addEventListener('DOMContentLoaded', function() {
+        debugLog('DOM已完全加载');
+        window.InitializePage = InitializePage; // 确保全局可用
+        
+        // 调用初始化函数
+        InitializePage();
+    });
+
+    // 创建全局彩蛋触发函数
+    window.TriggerAlgorithmSandbox = function() {
+        if (brandAnimationObj) {
+            brandAnimationObj.TriggerEasterEgg();
+        }
+    };
+    </script>
+
+    <!-- =====================================================
+    Space Tunnel Transition System
+    ===================================================== -->
+    <script>
+    class SpaceTunnelSystem {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.scene = null;
+            this.camera = null;
+            this.renderer = null;
+            this.tunnel = null;
+            this.particles = [];
+            this.logos = [];
+            this.active = false;
+            
+            this.Initialize();
+        }
+        
+        Initialize() {
+            // Initialize Three.js components
+            this.scene = new THREE.Scene();
+            
+            // Create perspective camera
+            this.camera = new THREE.PerspectiveCamera(
+                75, 
+                window.innerWidth / window.innerHeight, 
+                0.1, 
+                1000
+            );
+            this.camera.position.z = 5;
+            
+            // Create WebGL renderer
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: this.canvas,
+                alpha: true,
+                antialias: true
+            });
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Create tunnel geometry
+            this.CreateTunnel();
+            
+            // Create particle system
+            this.CreateParticleSystem();
+            
+            // Start animation loop
+            this.AnimationLoop();
+        }
+        
+        CreateTunnel() {
+            // Create tunnel using cylindrical geometry
+            const geometry = new THREE.CylinderGeometry(10, 10, 50, 32, 1, true);
+            
+            // Create material with custom shader for dynamic effects
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 },
+                    color1: { value: new THREE.Color('#0C1A2F') },
+                    color2: { value: new THREE.Color('#7D4EFF') }
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform float time;
+                    uniform vec3 color1;
+                    uniform vec3 color2;
+                    varying vec2 vUv;
+                    
+                    void main() {
+                        float noise = sin(vUv.y * 20.0 + time) * 0.5 + 0.5;
+                        vec3 color = mix(color1, color2, noise);
+                        gl_FragColor = vec4(color, 0.7);
+                    }
+                `,
+                side: THREE.BackSide,
+                transparent: true
+            });
+            
+            this.tunnel = new THREE.Mesh(geometry, material);
+            this.tunnel.rotation.x = Math.PI / 2; // Rotate to create horizontal tunnel
+            this.scene.add(this.tunnel);
+        }
+        
+        CreateParticleSystem() {
+            // Create particles flowing through the tunnel
+            const particleCount = devicePerformanceLevel === 'high' ? 2000 : 
+                                devicePerformanceLevel === 'medium' ? 1000 : 500;
+            
+            const particleGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            
+            const color1 = new THREE.Color('#2A6EF5');
+            const color2 = new THREE.Color('#7D4EFF');
+            
+            for (let i = 0; i < particleCount; i++) {
+                // Create particles in a circular pattern
+                const angle = Math.random() * Math.PI * 2;
+                const radius = Math.random() * 8 + 1; // Particles inside tunnel
+                
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                const z = (Math.random() - 0.5) * 50;
+                
+                positions[i * 3] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+                
+                // Color gradient
+                const mixedColor = color1.clone().lerp(color2, Math.random());
+                colors[i * 3] = mixedColor.r;
+                colors[i * 3 + 1] = mixedColor.g;
+                colors[i * 3 + 2] = mixedColor.b;
+                
+                // Save particle data for animation
+                this.particles.push({
+                    x: x,
+                    y: y,
+                    z: z,
+                    speed: Math.random() * 0.1 + 0.05
+                });
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+            this.scene.add(particleSystem);
+            
+            // Add partner brand logos
+            this.AddBrandLogos();
+        }
+        
+        AddBrandLogos() {
+            // Create brand logos on tunnel walls
+            const brandNames = ['Client A', 'Client B', 'Client C', 'Client D', 'Client E'];
+            
+            brandNames.forEach((name, index) => {
+                // Create simple plane geometry as logo placeholder
+                const geometry = new THREE.PlaneGeometry(2, 0.5);
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.7,
+                    side: THREE.DoubleSide
+                });
+                
+                const logo = new THREE.Mesh(geometry, material);
+                
+                // Place logo on tunnel inner wall
+                const angle = (index / brandNames.length) * Math.PI * 2;
+                const radius = 10;
+                
+                logo.position.x = Math.cos(angle) * radius;
+                logo.position.y = Math.sin(angle) * radius;
+                logo.position.z = Math.random() * 20 - 10;
+                
+                // Make logo face tunnel center
+                logo.lookAt(0, 0, 0);
+                
+                this.scene.add(logo);
+                this.logos.push({
+                    mesh: logo,
+                    speed: Math.random() * 0.05 + 0.01,
+                    angle: angle
+                });
+            });
+        }
+        
+        UpdateParticlePositions() {
+            if (!this.scene || !this.scene.children || this.scene.children.length < 2) return;
+            
+            const positions = this.scene.children[1].geometry.attributes.position.array;
+            
+            for (let i = 0; i < this.particles.length; i++) {
+                const p = this.particles[i];
+                
+                // Update Z position - create movement effect
+                p.z -= p.speed;
+                
+                // If particle moves out of view, reset to starting point
+                if (p.z < -25) {
+                    p.z = 25;
+                }
+                
+                // Update position in buffer
+                positions[i * 3] = p.x;
+                positions[i * 3 + 1] = p.y;
+                positions[i * 3 + 2] = p.z;
+            }
+            
+            this.scene.children[1].geometry.attributes.position.needsUpdate = true;
+            
+            // Update logo positions
+            this.logos.forEach(logo => {
+                logo.mesh.position.z -= logo.speed;
+                
+                // If logo moves out of view, reset to starting point
+                if (logo.mesh.position.z < -25) {
+                    logo.mesh.position.z = 25;
+                }
+            });
+            
+            // Update tunnel shader time
+            if (this.tunnel && this.tunnel.material.uniforms) {
+                this.tunnel.material.uniforms.time.value += 0.01;
+            }
+        }
+        
+        AnimationLoop() {
+            if (!this.renderer) return;
+            
+            // Update tunnel rotation
+            if (this.tunnel) {
+                this.tunnel.rotation.z += 0.001;
+            }
+            
+            // Update particle positions
+            if (this.active) {
+                this.UpdateParticlePositions();
+            }
+            
+            // Render scene
+            this.renderer.render(this.scene, this.camera);
+            
+            // Next frame
+            requestAnimationFrame(() => this.AnimationLoop());
+        }
+        
+        SetVisibility(visible) {
+            this.canvas.style.opacity = visible ? '1' : '0';
+            this.active = visible;
+        }
+        
+        ActivateTunnelEffect(progress) {
+            // Adjust camera position based on scroll progress
+            if (this.camera) {
+                // Move camera to create tunnel traversal effect
+                this.camera.position.z = 5 - progress * 10;
+                
+                // When entering deeper, increase rotation feeling
+                if (progress > 0.5) {
+                    const rotationIntensity = (progress - 0.5) * 2;
+                    this.camera.rotation.z = rotationIntensity * 0.2;
+                } else {
+                    this.camera.rotation.z = 0;
+                }
+            }
+        }
+    }
+    </script>
+
+    <!-- =====================================================
+    Holographic Matrix System
+    ===================================================== -->
+    <script>
+    class HolographicMatrixSystem {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            this.scene = null;
+            this.camera = null;
+            this.renderer = null;
+            this.modules = [];
+            this.raycaster = new THREE.Raycaster();
+            this.mouse = new THREE.Vector2();
+            
+            this.Initialize();
+        }
+        
+        Initialize() {
+            if (!this.ctx) {
+                console.error('WebGL not supported');
+                return;
+            }
+            
+            // Setup Three.js scene
+            this.scene = new THREE.Scene();
+            this.camera = new THREE.PerspectiveCamera(
+                60, 
+                window.innerWidth / window.innerHeight, 
+                0.1, 
+                1000
+            );
+            this.camera.position.z = 15;
+            
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: this.canvas,
+                alpha: true,
+                antialias: true
+            });
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            this.scene.add(ambientLight);
+            
+            // Add directional light
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(0, 10, 10);
+            this.scene.add(directionalLight);
+            
+            // Create diamond modules
+            this.CreateModules();
+            
+            // Add event listeners
+            window.addEventListener('resize', () => this.HandleResize());
+            this.canvas.addEventListener('click', (e) => this.HandleClick(e));
+            this.canvas.addEventListener('mousemove', (e) => this.HandleMouseMove(e));
+            
+            // Start animation loop
+            this.AnimationLoop();
+        }
+        
+        CreateModules() {
+            const moduleData = [
+                { title: 'NLP引擎', color: '#2A6EF5', position: [-5, 3, 0] },
+                { title: '多模态系统', color: '#7D4EFF', position: [5, 3, 0] },
+                { title: '商业解决方案', color: '#00F0FF', position: [0, -3, 0] }
+            ];
+            
+            moduleData.forEach(data => {
+                // Create diamond geometry
+                const geometry = new THREE.OctahedronGeometry(2, 0);
+                
+                // Create material with custom shader
+                const material = new THREE.ShaderMaterial({
+                    uniforms: {
+                        time: { value: 0 },
+                        baseColor: { value: new THREE.Color(data.color) },
+                        glowColor: { value: new THREE.Color('#ffffff') }
+                    },
+                    vertexShader: `
+                        varying vec3 vNormal;
+                        varying vec3 vPosition;
+                        
+                        void main() {
+                            vNormal = normal;
+                            vPosition = position;
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                        }
+                    `,
+                    fragmentShader: `
+                        uniform float time;
+                        uniform vec3 baseColor;
+                        uniform vec3 glowColor;
+                        varying vec3 vNormal;
+                        varying vec3 vPosition;
+                        
+                        void main() {
+                            float pulse = sin(time * 2.0) * 0.5 + 0.5;
+                            float edgeFactor = abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0)));
+                            edgeFactor = pow(1.0 - edgeFactor, 3.0);
+                            
+                            vec3 finalColor = mix(baseColor, glowColor, edgeFactor * pulse);
+                            gl_FragColor = vec4(finalColor, 0.9);
+                        }
+                    `,
+                    transparent: true,
+                    side: THREE.DoubleSide
+                });
+                
+                const module = new THREE.Mesh(geometry, material);
+                module.position.set(data.position[0], data.position[1], data.position[2]);
+                module.userData = { title: data.title };
+                
+                this.scene.add(module);
+                this.modules.push(module);
+            });
+        }
+        
+        HandleResize() {
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        HandleClick(event) {
+            // Calculate mouse position in normalized device coordinates
+            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            
+            // Update the picking ray with the camera and mouse position
+            this.raycaster.setFromCamera(this.mouse, this.camera);
+            
+            // Calculate objects intersecting the picking ray
+            const intersects = this.raycaster.intersectObjects(this.modules);
+            
+            if (intersects.length > 0) {
+                const selectedModule = intersects[0].object;
+                this.ExpandModule(selectedModule);
+            }
+        }
+        
+        HandleMouseMove(event) {
+            // Calculate mouse position in normalized device coordinates
+            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+        
+        ExpandModule(module) {
+            console.log(`Expanding module: ${module.userData.title}`);
+            
+            // Animate module expansion
+            gsap.to(module.scale, {
+                x: 1.5,
+                y: 1.5,
+                z: 1.5,
+                duration: 0.5,
+                ease: "back.out(1.7)",
+                onComplete: () => {
+                    // After expansion, trigger particle decomposition
+                    this.DecomposeToParticles(module);
+                }
+            });
+        }
+        
+        DecomposeToParticles(module) {
+            // Create particle effect (simplified version)
+            const particleCount = 100;
+            const particles = new THREE.Group();
+            
+            for (let i = 0; i < particleCount; i++) {
+                const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+                const material = new THREE.MeshBasicMaterial({
+                    color: module.material.uniforms.baseColor.value,
+                    transparent: true
+                });
+                
+                const particle = new THREE.Mesh(geometry, material);
+                
+                // Random position within the module
+                particle.position.set(
+                    module.position.x + (Math.random() - 0.5) * 2,
+                    module.position.y + (Math.random() - 0.5) * 2,
+                    module.position.z + (Math.random() - 0.5) * 2
+                );
+                
+                particles.add(particle);
+                
+                // Animate particle
+                gsap.to(particle.position, {
+                    x: particle.position.x + (Math.random() - 0.5) * 10,
+                    y: particle.position.y + (Math.random() - 0.5) * 10,
+                    z: particle.position.z + (Math.random() - 0.5) * 10,
+                    duration: 1 + Math.random(),
+                    ease: "power2.out",
+                    onComplete: () => {
+                        if (i === particleCount - 1) {
+                            // Last particle animation completed
+                            particles.remove(particle);
+                            this.ShowCaseStudy(module.userData.title);
+                        } else {
+                            particles.remove(particle);
+                        }
+                    }
+                });
+                
+                gsap.to(particle.material, {
+                    opacity: 0,
+                    duration: 1 + Math.random()
+                });
+            }
+            
+            this.scene.add(particles);
+            
+            // Hide original module
+            module.visible = false;
+        }
+        
+        ShowCaseStudy(title) {
+            console.log(`Showing case study for: ${title}`);
+            
+            // In a real implementation, this would transition to a full-screen case study
+            // For now, we'll just reset the module after a delay
+            setTimeout(() => {
+                this.ResetModules();
+            }, 2000);
+        }
+        
+        ResetModules() {
+            this.modules.forEach(module => {
+                module.visible = true;
+                gsap.to(module.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    duration: 0.5
+                });
+            });
+        }
+        
+        AnimationLoop() {
+            // Update module animations
+            const time = performance.now() * 0.001; // Convert to seconds
+            
+            this.modules.forEach((module, index) => {
+                // Rotate modules
+                module.rotation.x = time * 0.2;
+                module.rotation.y = time * 0.3;
+                
+                // Update shader time
+                if (module.material.uniforms && module.material.uniforms.time) {
+                    module.material.uniforms.time.value = time;
+                }
+                
+                // Add floating motion
+                module.position.y += Math.sin(time * 0.5 + index) * 0.003;
+            });
+            
+            // Render scene
+            this.renderer.render(this.scene, this.camera);
+            
+            // Next frame
+            requestAnimationFrame(() => this.AnimationLoop());
+        }
+    }
+    </script>
+
+    <!-- 添加调试输出函数 -->
+    <script>
+        function debugLog(message) {
+            const output = document.getElementById('debug-output');
+            if (output) {
+                const time = new Date().toLocaleTimeString();
+                output.innerHTML += `<div>[${time}] ${message}</div>`;
+            }
+            console.log(message);
+        }
+    </script>
+
+    <!-- 在初始化脚本之前添加 -->
+    <script>
+    // 重新定义设备性能检测函数
+    function DetectDevicePerformance() {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        if (!gl) {
+            devicePerformanceLevel = 'low';
+            return;
+        }
+        
+        const extension = gl.getExtension('WEBGL_debug_renderer_info');
+        if (extension) {
+            const renderer = gl.getParameter(extension.UNMASKED_RENDERER_WEBGL);
+            
+            // Mobile device detection
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                devicePerformanceLevel = 'medium';
+            }
+            
+            // Low-end GPU detection
+            if (renderer.indexOf('Intel') !== -1) {
+                devicePerformanceLevel = 'medium';
+            }
+        }
+        
+        // Check if 4K resolution is supported
+        if (window.screen.width >= 3840 && window.screen.height >= 2160) {
+            devicePerformanceLevel = 'ultra';
+        }
+    }
+    </script>
+
+    <!-- 然后是其他脚本 -->
+    <script>
+    // 在main.js加载后，检查是否所有必要的函数都已定义
+    window.addEventListener('load', function() {
+        // 检查THREE.js
+        if (typeof THREE === 'undefined') {
+            console.error('THREE.js not loaded!');
+            debugLog('THREE.js not loaded!');
+        } else {
+            console.log('THREE.js loaded successfully, version:', THREE.REVISION);
+            debugLog('THREE.js loaded successfully');
+        }
+        
+        // 检查main.js中的函数
+        if (typeof InitializePage === 'undefined') {
+            console.error('main.js functions not loaded correctly');
+            debugLog('main.js functions not loaded correctly');
+        } else {
+            console.log('main.js loaded successfully');
+            debugLog('main.js loaded successfully');
+        }
+    });
+    </script>
+
+    <!-- 添加在body结束标签前 -->
+    <script>
+    // 修复QuantumNeuralNetwork类中的ApplyQuantumGate方法
+    // 这将覆盖main.js中的有问题版本
+    window.addEventListener('load', function() {
+        try {
+            // 检查是否已经定义了QuantumNeuralNetwork类
+            if (typeof QuantumNeuralNetwork !== 'undefined') {
+                // 重新定义ApplyQuantumGate方法
+                QuantumNeuralNetwork.prototype.ApplyQuantumGate = function(gateType) {
+                    console.log(`Applying ${gateType} quantum gate...`);
+                    return "Quantum state updated";
+                };
+                debugLog("已修复QuantumNeuralNetwork.ApplyQuantumGate方法");
+            } else {
+                // 如果类尚未定义，则定义整个类
+                window.QuantumNeuralNetwork = class QuantumNeuralNetwork {
+                    constructor(layers, qubits) {
+                        this.layers = layers;
+                        this.qubits = qubits;
+                        this.networkState = this.InitializeQuantumState();
+                    }
+                    
+                    InitializeQuantumState() {
+                        console.log("Initializing quantum network...");
+                        return "Quantum network in superposition state ready";
+                    }
+                    
+                    ApplyQuantumGate(gateType) {
+                        console.log(`Applying ${gateType} quantum gate...`);
+                        return "Quantum state updated";
+                    }
+                    
+                    ExecuteQuantumInference(inputData) {
+                        console.log("Processing data through quantum channel...");
+                        return "Quantum computation completed";
+                    }
+                };
+                debugLog("已创建QuantumNeuralNetwork类");
+            }
+            
+            // 尝试初始化页面
+            if (typeof InitializePage === 'function') {
+                debugLog("尝试手动初始化页面...");
+                InitializePage();
+            } else {
+                debugLog("InitializePage函数未定义，创建简化版本");
+                // 创建一个简化版的初始化函数
+                window.InitializePage = function() {
+                    debugLog("使用简化版初始化函数");
+                    
+                    // 基本初始化
+                    const particleCanvas = document.getElementById('particleBackground');
+                    if (particleCanvas && typeof ParticleSystem === 'function') {
+                        window.particleSystemObj = new ParticleSystem(particleCanvas);
+                        debugLog("粒子系统已初始化");
+                    }
+                    
+                    // 初始化其他组件...
+                };
+                
+                // 调用简化版初始化函数
+                window.InitializePage();
+            }
+        } catch (error) {
+            debugLog(`修复过程中出错: ${error.message}`);
+            console.error("Error during fix:", error);
+        }
+    });
+    </script>
+
+    <!-- 添加THREE.js调试 -->
+    <script>
+    window.addEventListener('load', function() {
+        // 测试THREE.js功能
+        if (typeof THREE !== 'undefined') {
+            try {
+                debugLog("测试THREE.js基本功能");
+                // 创建一个简单的场景测试
+                const testScene = new THREE.Scene();
+                const testCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const testGeometry = new THREE.BoxGeometry(1, 1, 1);
+                const testMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                const testCube = new THREE.Mesh(testGeometry, testMaterial);
+                testScene.add(testCube);
+                
+                debugLog("THREE.js测试成功 - 基本对象可以创建");
+            } catch (error) {
+                debugLog(`THREE.js测试失败: ${error.message}`);
+            }
+        }
+    });
+    </script>
+
+    <!-- 调试面板控制 -->
+    <script>
+    window.addEventListener('load', function() {
+        const debugTab = document.querySelector('.debug-tab');
+        const debugInfo = document.querySelector('.debug-info');
+        
+        // 点击标签显示/隐藏调试信息
+        debugTab.addEventListener('click', function() {
+            debugInfo.classList.toggle('show');
+            debugTab.textContent = debugInfo.classList.contains('show') ? '◀' : '▶';
+        });
+        
+        // 页面加载5秒后自动关闭调试信息
+        setTimeout(function() {
+            debugInfo.classList.remove('show');
+            debugTab.textContent = '▶';
+        }, 5000);
+    });
+    </script>
+</body>
+</html> 
