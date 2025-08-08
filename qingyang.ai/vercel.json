@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "functions": {
+    "app/**/route.ts": { "maxDuration": 10 }
+  }
+}

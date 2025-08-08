@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-50 antialiased;
+}
+
+a {
+  @apply text-brand hover:text-brand-dark transition-colors;
+}
+
+/* Prose */
+.prose :where(code):not(:where([class~=not-prose] *)) {
+  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded;
+}
+
