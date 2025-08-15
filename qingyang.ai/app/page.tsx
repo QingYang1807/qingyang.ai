@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { GetProfile } from '@/lib/config'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const profile = await GetProfile();
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -14,11 +16,11 @@ export default function HomePage() {
                 现在可预约咨询
               </div>
               <h1 className="text-hero text-white mb-6">
-                清扬<br />
+                {profile.name}<br />
                 <span className="text-gradient">AI 工程师</span>
               </h1>
               <p className="text-lead text-blue-100 mb-8 max-w-lg">
-                专注于 AI 产品落地与工程实践，为企业和个人提供前沿的 AI 解决方案。一个人就是一家公司的全栈能力。
+                {profile.bio}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="btn-primary btn-lg">
@@ -35,30 +37,34 @@ export default function HomePage() {
                 <div className="relative bg-white/10 backdrop-blur-glass rounded-2xl p-8 border border-white/20">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative h-20 w-20 rounded-full overflow-hidden ring-4 ring-white/30">
-                      <Image src="/avatar.svg" alt="清扬" fill className="object-cover" />
+                      <Image src={profile.avatar || "/avatar.svg"} alt={profile.name} fill className="object-cover" />
                     </div>
                     <div className="text-white">
-                      <h3 className="text-xl font-semibold">清扬</h3>
-                      <p className="text-blue-200">AI Engineering Consultant</p>
+                      <h3 className="text-xl font-semibold">{profile.name}</h3>
+                      <p className="text-blue-200">{profile.title}</p>
+                      {profile.email && (
+                        <div className="flex items-center gap-2 mt-2">
+                          <svg className="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                          <a href={`mailto:${profile.email}`} className="text-sm text-blue-200 hover:text-white transition-colors">
+                            {profile.email}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="space-y-3 text-sm text-blue-100">
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                      机器学习模型部署专家
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                      大语言模型应用开发
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
-                      AI 产品架构设计
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
-                      企业AI战略咨询
-                    </div>
+                    {profile.skills?.map((skill, index) => {
+                      const colors = ['bg-green-400', 'bg-blue-400', 'bg-purple-400', 'bg-orange-400', 'bg-pink-400', 'bg-yellow-400'];
+                      const colorClass = colors[index % colors.length];
+                      return (
+                        <div key={index} className="flex items-center gap-3">
+                          <span className={`w-2 h-2 ${colorClass} rounded-full`}></span>
+                          {skill}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

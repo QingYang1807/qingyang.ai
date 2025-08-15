@@ -109,6 +109,24 @@ model Setting {
   updatedAt DateTime @updatedAt
 }
 
+// 个人信息模型
+model Profile {
+  id        String   @id @default(cuid())
+  name      String
+  title     String
+  email     String?
+  phone     String?
+  website   String?
+  avatar    String?
+  bio       String?
+  location  String?
+  skills    String?  // JSON array
+  social    String?  // JSON object for social links
+  updatedAt DateTime @updatedAt
+  
+  @@map("profiles")
+}
+
 // 博客文章模型（保留原有功能）
 model Post {
   id        String   @id @default(cuid())
