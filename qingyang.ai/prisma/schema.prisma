@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 管理员用户模型
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 页面内容模型
+model PageContent {
+  id          String   @id @default(cuid())
+  page        String   // 页面标识 (home, about, projects, contact)
+  section     String   // 区域标识 (hero, services, stats, etc.)
+  key         String   // 内容键
+  value       String   // 内容值 (支持JSON)
+  type        String   @default("text") // 内容类型 (text, html, json, image)
+  order       Int      @default(0) // 排序
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([page, section, key])
+}
+
+// 项目模型
+model Project {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  description     String
+  longDescription String?
+  technologies    String   // JSON array
+  category        String
+  status          String   @default("completed") // completed, in-progress, coming-soon
+  results         String?  // JSON array
+  images          String?  // JSON array
+  href            String?
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// 服务模型
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  icon        String?  // SVG或图标名称
+  features    String?  // JSON array
+  price       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 技能模型
+model Skill {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // technical, business
+  level       Int      @default(0) // 0-100
+  description String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 经验模型
+model Experience {
+  id          String   @id @default(cuid())
+  title       String
+  company     String
+  description String
+  technologies String? // JSON array
+  startDate   String
+  endDate     String?
+  isCurrent   Boolean  @default(false)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 设置模型
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String   @default("text") // text, json, boolean, number
+  category  String   @default("general")
+  updatedAt DateTime @updatedAt
+}
+
+// 博客文章模型（保留原有功能）
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

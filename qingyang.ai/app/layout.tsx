@@ -26,25 +26,93 @@ export default function RootLayout({
       <head />
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
-          <header className="border-b">
-            <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
-              <a href="/" className="font-semibold">清扬 AI</a>
-              <nav className="flex items-center gap-5 text-sm">
-                <a href="/projects">作品</a>
-                <a href="/posts">文章</a>
-                <a href="/about">关于</a>
-                <a href="/contact">联系</a>
-                <a href="/links">社交</a>
+          <header className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-950/80 sticky top-0 z-50">
+            <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+              <a href="/" className="flex items-center gap-3 group">
+                <div className="w-8 h-8 bg-gradient-brand rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <span className="font-bold text-lg text-gray-900 dark:text-gray-100 group-hover:text-brand transition-colors">
+                  清扬 AI
+                </span>
+              </a>
+              <nav className="hidden md:flex items-center gap-8">
+                <a href="/projects" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  项目案例
+                </a>
+                <a href="/about" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  关于我
+                </a>
+                <a href="/posts" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  技术文章
+                </a>
+                <a href="/links" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  社交媒体
+                </a>
+                <a href="/contact" className="btn-primary btn-sm">
+                  开始咨询
+                </a>
               </nav>
+              <button className="md:hidden p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
             </div>
           </header>
           <div className="flex-1">{children}</div>
-          <footer className="border-t">
-            <div className="mx-auto max-w-6xl px-6 py-8 text-sm flex flex-col md:flex-row items-center gap-3 md:justify-between">
-              <p>© {new Date().getFullYear()} 清扬</p>
-              <div className="flex gap-4">
-                <a href="/rss">RSS</a>
-                <a href="/sitemap.xml">Sitemap</a>
+          <footer className="border-t bg-gray-50 dark:bg-gray-900/50">
+            <div className="mx-auto max-w-7xl px-6 py-12">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="md:col-span-2">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-gradient-brand rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <span className="font-bold text-lg text-gray-900 dark:text-gray-100">清扬 AI</span>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 max-w-md mb-4">
+                    专注于 AI 产品落地与工程实践，为企业和个人提供前沿的 AI 解决方案。一个人就是一家公司的全栈能力。
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <span>📍 北京，中国</span>
+                    <span>⚡ 24小时响应</span>
+                    <span>✅ 100% 客户满意</span>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">服务</h3>
+                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a href="/contact" className="hover:text-brand transition-colors">技术咨询</a></li>
+                    <li><a href="/contact" className="hover:text-brand transition-colors">产品开发</a></li>
+                    <li><a href="/contact" className="hover:text-brand transition-colors">企业培训</a></li>
+                    <li><a href="/projects" className="hover:text-brand transition-colors">项目案例</a></li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">资源</h3>
+                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a href="/about" className="hover:text-brand transition-colors">关于我</a></li>
+                    <li><a href="/posts" className="hover:text-brand transition-colors">技术文章</a></li>
+                    <li><a href="/links" className="hover:text-brand transition-colors">社交媒体</a></li>
+                    <li><a href="/rss" className="hover:text-brand transition-colors">RSS 订阅</a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+                <p>© {new Date().getFullYear()} 清扬 AI. 保留所有权利.</p>
+                <div className="flex items-center gap-4 mt-4 md:mt-0">
+                  <a href="/sitemap.xml" className="hover:text-brand transition-colors">站点地图</a>
+                  <span>•</span>
+                  <span>京ICP备xxxxxxxx号</span>
+                </div>
               </div>
             </div>
           </footer>

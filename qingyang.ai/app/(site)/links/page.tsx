@@ -2,8 +2,9 @@ import Link from 'next/link'
 
 const links = [
   { name: 'GitHub', href: 'https://github.com/QIngYang1807' },
-  { name: 'Twitter/X', href: 'https://x.com' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com' }
+  { name: '博客', href: 'http://linqingyang.com' },
+  // { name: 'Twitter/X', href: 'https://x.com' },
+  // { name: 'LinkedIn', href: 'https://www.linkedin.com' }
 ]
 
 export default function LinksPage() {

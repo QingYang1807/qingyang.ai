@@ -4,35 +4,174 @@ import Image from 'next/image'
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 items-center">
-          <div className="relative h-36 w-36 rounded-full overflow-hidden ring-2 ring-brand/30 bg-white/5">
-            <Image src="/avatar.svg" alt="avatar" fill className="object-cover" />
-          </div>
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold">清扬 · AI 工程师</h1>
-            <p className="mt-3 text-gray-600 dark:text-gray-300">
-              在 qingyang.ai 汇聚我的作品、动态、文章、开源仓库、演讲与社交链接。
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/projects" className="px-4 py-2 rounded bg-brand text-white">作品集</Link>
-              <Link href="/posts" className="px-4 py-2 rounded border border-brand text-brand">文章</Link>
-              <Link href="/about" className="px-4 py-2 rounded border">关于我</Link>
-              <Link href="/contact" className="px-4 py-2 rounded border">联系</Link>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-hero">
+        <div className="relative container-wide">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20 lg:py-32">
+            <div className="text-white">
+              <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                现在可预约咨询
+              </div>
+              <h1 className="text-hero text-white mb-6">
+                清扬<br />
+                <span className="text-gradient">AI 工程师</span>
+              </h1>
+              <p className="text-lead text-blue-100 mb-8 max-w-lg">
+                专注于 AI 产品落地与工程实践，为企业和个人提供前沿的 AI 解决方案。一个人就是一家公司的全栈能力。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/contact" className="btn-primary btn-lg">
+                  预约咨询
+                </Link>
+                <Link href="/projects" className="btn-secondary btn-lg border-white text-white hover:bg-white hover:text-brand-900">
+                  查看案例
+                </Link>
+              </div>
+            </div>
+            <div className="relative lg:order-last">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-400 to-brand-600 rounded-2xl blur-2xl opacity-30 animate-pulse-soft"></div>
+                <div className="relative bg-white/10 backdrop-blur-glass rounded-2xl p-8 border border-white/20">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="relative h-20 w-20 rounded-full overflow-hidden ring-4 ring-white/30">
+                      <Image src="/avatar.svg" alt="清扬" fill className="object-cover" />
+                    </div>
+                    <div className="text-white">
+                      <h3 className="text-xl font-semibold">清扬</h3>
+                      <p className="text-blue-200">AI Engineering Consultant</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3 text-sm text-blue-100">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                      机器学习模型部署专家
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                      大语言模型应用开发
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                      AI 产品架构设计
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
+                      企业AI战略咨询
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-20">
-        <h2 className="text-xl font-semibold mb-4">最近更新</h2>
-        <ul className="space-y-3">
-          <li className="rounded border p-4 hover:shadow">
-            <Link href="/posts/hello-qingyang">发布站点 v0：在 Vercel 上的无后端个人门户</Link>
-          </li>
-        </ul>
+      {/* Services Section */}
+      <section className="section bg-gray-50 dark:bg-gray-900/50">
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">核心服务</h2>
+            <p className="section-description">
+              为企业和个人提供专业的 AI 解决方案，从概念到部署的全流程服务
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="card-hover group">
+              <div className="w-12 h-12 bg-gradient-brand rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">AI 产品开发</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                从需求分析到产品上线，提供端到端的 AI 产品开发服务，包括模型训练、部署和优化。
+              </p>
+              <Link href="/contact" className="text-brand font-medium hover:text-brand-dark">
+                了解更多 →
+              </Link>
+            </div>
+            
+            <div className="card-hover group">
+              <div className="w-12 h-12 bg-gradient-brand rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">技术咨询</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                为企业制定 AI 技术战略，评估技术方案可行性，提供专业的技术架构建议。
+              </p>
+              <Link href="/contact" className="text-brand font-medium hover:text-brand-dark">
+                预约咨询 →
+              </Link>
+            </div>
+            
+            <div className="card-hover group">
+              <div className="w-12 h-12 bg-gradient-brand rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">培训教育</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                为团队提供 AI 技术培训，包括机器学习基础、深度学习实践和最新AI工具应用。
+              </p>
+              <Link href="/contact" className="text-brand font-medium hover:text-brand-dark">
+                了解课程 →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section">
+        <div className="section-container">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div className="space-y-2">
+              <div className="text-3xl lg:text-4xl font-bold text-brand">5+</div>
+              <div className="text-gray-600 dark:text-gray-400">年 AI 经验</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl lg:text-4xl font-bold text-brand">50+</div>
+              <div className="text-gray-600 dark:text-gray-400">项目交付</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl lg:text-4xl font-bold text-brand">100%</div>
+              <div className="text-gray-600 dark:text-gray-400">客户满意度</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl lg:text-4xl font-bold text-brand">24h</div>
+              <div className="text-gray-600 dark:text-gray-400">响应时间</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section">
+        <div className="section-container">
+          <div className="bg-gradient-brand rounded-2xl p-8 lg:p-12 text-center text-white relative overflow-hidden">
+            <div className="relative">
+              <h2 className="text-2xl lg:text-3xl font-bold mb-4">
+                准备开启您的 AI 项目？
+              </h2>
+              <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+                让我们一起讨论您的需求，制定专属的 AI 解决方案。首次咨询免费，24小时内回复。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact" className="btn-lg px-8 py-4 bg-white text-brand hover:bg-gray-100 hover:shadow-lg">
+                  免费咨询
+                </Link>
+                <Link href="/projects" className="btn-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand">
+                  查看案例
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
 }
-
