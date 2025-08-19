@@ -24,7 +24,7 @@ const emailConfig: EmailConfig = {
 
 // 创建邮件传输器
 export function CreateEmailTransporter() {
-  return nodemailer.createTransporter(emailConfig);
+  return nodemailer.createTransport(emailConfig);
 }
 
 // 咨询请求邮件模板
