@@ -63,10 +63,27 @@ const projects: Project[] = [
       '平台可用性 99.9%'
     ],
     featured: true
+  },
+  {
+    slug: 'chatbi-platform',
+    name: 'ChatBI 智能数据平台',
+    description: '融合 AI 对话能力的企业级商业智能分析平台',
+    longDescription: '创新性的商业智能平台，结合大语言模型技术实现自然语言查询和智能数据分析。支持多数据源接入、实时数据处理、智能图表生成和业务洞察自动发现。通过 AI 助手让数据分析变得像聊天一样简单，降低 BI 使用门槛，提升业务决策效率。',
+    technologies: ['Vue.js', 'Apache Doris', 'Python', 'FastAPI', 'LangChain', 'ECharts', 'MySQL', 'Elasticsearch'],
+    category: 'BI 智能分析',
+    status: 'completed',
+    results: [
+      '数据查询效率提升 5倍',
+      '支持 10+ 种数据源',
+      '自然语言查询准确率 95%',
+      '业务洞察发现率提升 80%'
+    ],
+    href: 'https://chatbi.qingyang.ai',
+    featured: true
   }
 ]
 
-const categories = ['全部', '全栈开发', 'AI 产品', '数据平台']
+const categories = ['全部', '全栈开发', 'AI 产品', '数据平台', 'BI 智能分析']
 
 export default function ProjectsPage() {
   const featuredProjects = projects.filter(p => p.featured)

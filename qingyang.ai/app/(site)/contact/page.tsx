@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 
 export default function ContactPage() {
   const [status, setStatus] = useState<string>("")
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const formRef = useRef<HTMLFormElement>(null)
 
   async function HandleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -29,7 +30,11 @@ export default function ContactPage() {
       }
       
       setStatus('🎉 感谢您的咨询！我已收到您的请求，会在24小时内回复您。同时您也会收到一封确认邮件。')
-      e.currentTarget.reset()
+      
+      // 使用 ref 来重置表单，避免异步操作中 currentTarget 为 null 的问题
+      if (formRef.current) {
+        formRef.current.reset()
+      }
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : '提交失败，请稍后重试'
       setStatus(`❌ ${errorMessage}`)
@@ -110,7 +115,7 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 发送咨询请求
               </h2>
-              <form onSubmit={HandleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={HandleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

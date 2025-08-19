@@ -43,11 +43,16 @@ export async function POST(req: NextRequest) {
     
     if (!emailResult.success) {
       console.error('Failed to send consultation email:', emailResult.error)
+      console.log('Email config check - USER:', process.env.EMAIL_USER ? 'SET' : 'NOT SET')
+      console.log('Email config check - PASSWORD:', process.env.EMAIL_PASSWORD ? 'SET' : 'NOT SET')
+      
       // 即使发送失败也不要让用户看到错误，记录日志即可
-      // return NextResponse.json({ 
-      //   ok: false, 
-      //   message: '邮件发送失败，请稍后重试或直接联系 contact@qingyang.ai' 
-      // }, { status: 500 })
+      // 但在开发环境下可以看到更详细的错误信息
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Development mode: Email sending failed but returning success to user')
+      }
+    } else {
+      console.log('Email sent successfully, messageId:', emailResult.messageId)
     }
 
     // 发送确认邮件给客户（非阻塞，失败不影响主流程）
@@ -57,8 +62,15 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ 
       ok: true, 
-      message: '感谢您的咨询！我会在24小时内回复您。',
-      messageId: emailResult.messageId || null
+      message: '感谢您的咨询！我已收到您的请求，会在24小时内回复您。',
+      messageId: emailResult.messageId || null,
+      // 在开发模式下返回更多调试信息
+      ...(process.env.NODE_ENV === 'development' && {
+        debug: {
+          emailSent: emailResult.success,
+          error: emailResult.error || null
+        }
+      })
     })
 
   } catch (error) {
