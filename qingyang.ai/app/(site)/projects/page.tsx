@@ -80,10 +80,27 @@ const projects: Project[] = [
     ],
     href: 'https://chatbi.qingyang.ai',
     featured: true
+  },
+  {
+    slug: 'smart-office-system',
+    name: '高效办公系统',
+    description: '一站式企业办公管理平台，提升团队协作效率',
+    longDescription: '全方位的企业办公管理系统，集成了项目管理、任务协作、文档管理、日程安排、考勤管理等核心办公功能。采用现代化的前后端分离架构，支持多端同步，实时协作。通过智能化的工作流引擎和数据可视化分析，帮助企业提升管理效率，优化工作流程。',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Redis', 'Docker'],
+    category: '企业办公',
+    status: 'completed',
+    results: [
+      '办公效率提升 40%',
+      '团队协作效率提升 60%',
+      '文档管理效率提升 80%',
+      '项目交付周期缩短 30%'
+    ],
+    href: 'https://work.qingyang.ai',
+    featured: true
   }
 ]
 
-const categories = ['全部', '全栈开发', 'AI 产品', '数据平台', 'BI 智能分析']
+const categories = ['全部', '全栈开发', 'AI 产品', '数据平台', 'BI 智能分析', '企业办公']
 
 export default function ProjectsPage() {
   const featuredProjects = projects.filter(p => p.featured)
