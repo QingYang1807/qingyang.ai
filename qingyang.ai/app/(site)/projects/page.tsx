@@ -62,6 +62,7 @@ const projects: Project[] = [
       '模型训练时间缩短 80%',
       '平台可用性 99.9%'
     ],
+    href: 'https://data.qingyang.ai/',
     featured: true
   },
   {
