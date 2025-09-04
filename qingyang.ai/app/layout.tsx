@@ -94,7 +94,9 @@ export default function RootLayout({
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">服务</h3>
                   <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                    <li><a href="/contact" className="hover:text-brand transition-colors">AI数据处理平台</a></li>
+                    <li><a href="https://data.qingyang.ai" className="hover:text-brand transition-colors">AI数据处理平台</a></li>
+                    <li><a href="https://chatbi.qingyang.ai" className="hover:text-brand transition-colors">ChatBI数据分析平台</a></li>
+                    <li><a href="https://work.qingyang.ai" className="hover:text-brand transition-colors">高效办公平台</a></li>
                     <li><a href="/contact" className="hover:text-brand transition-colors">RAG+Agent应用开发</a></li>
                     <li><a href="/contact" className="hover:text-brand transition-colors">数据治理与中台</a></li>
                     <li><a href="/projects" className="hover:text-brand transition-colors">项目案例</a></li>
