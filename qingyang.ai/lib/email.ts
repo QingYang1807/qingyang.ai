@@ -18,7 +18,7 @@ const {
   SMTP_PORT = '465',
   SMTP_SECURE = 'true',
   SMTP_USER = 'liufeng@datagov.top',
-  SMTP_PASS = '',
+  SMTP_PASS = process.env.SMTP_PASS,
   MAIL_FROM = `qingyang.ai 咨询系统 <contact@qingyang.ai>`,
   MAIL_TO = '15274452497@163.com',
 } = process.env;
