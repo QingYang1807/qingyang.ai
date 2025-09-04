@@ -1,3 +1,5 @@
+import 'server-only';
+
 import nodemailer from 'nodemailer';
 
 // 邮件配置接口
@@ -163,7 +165,7 @@ ${data.message}
 // 发送咨询请求邮件
 export async function SendConsultationEmail(data: ConsultationRequest) {
   try {
-    const transporter = CreateEmailTransporter();
+    const transporter = await CreateEmailTransporter();
     const emailContent = GenerateConsultationEmailContent(data);
     
     const mailOptions = {

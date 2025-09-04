@@ -11,7 +11,7 @@ export default function AdvantagesPage() {
               个人优势
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              基于5年企业级开发经验，形成了独特的"五有"优势体系，为客户提供全方位的专业服务
+                             基于5年企业级开发经验，形成了独特的&quot;五有&quot;优势体系，为客户提供全方位的专业服务
             </p>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function AdvantagesPage() {
         <div className="container-narrow">
           <div className="text-center text-white">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              基于"五有"优势，为您提供专业服务
+                             基于&quot;五有&quot;优势，为您提供专业服务
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               无论是技术咨询、产品开发还是团队培训，我都能基于丰富的实战经验为您提供专业的支持

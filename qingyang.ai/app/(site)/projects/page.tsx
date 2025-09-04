@@ -79,6 +79,7 @@ const projects: Project[] = [
       '支撑DeepSeek R1模型训练',
       '覆盖10+AI场景数据集支撑'
     ],
+    href: 'https://data.qingyang.ai',
     featured: true
   },
   {
