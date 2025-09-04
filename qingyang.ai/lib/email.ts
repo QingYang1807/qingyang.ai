@@ -20,7 +20,7 @@ const {
   SMTP_USER = 'contact@qingyang.ai',
   SMTP_PASS = '',
   MAIL_FROM = `qingyang.ai 咨询系统 <contact@qingyang.ai>`,
-  MAIL_TO = 'contact@qingyang.ai',
+  MAIL_TO = '15274452497@163.com',
 } = process.env;
 
 // 最终 SMTP 配置
