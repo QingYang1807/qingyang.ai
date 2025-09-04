@@ -17,8 +17,7 @@ export default function AboutPage() {
                 清扬
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                5年+ AI 工程经验，专注于人工智能产品的商业化落地。从算法研究到产品部署，
-                我提供端到端的 AI 解决方案，帮助企业和个人实现数字化转型。
+                5年Java & 数据平台开发、3年AI数据应用经验，主导企业级数据处理平台建设，覆盖采集-清洗-标注-增强-合成-评估-安全-回流全链路。累计交付30万+数据集，落地运营商、文旅、金融、医疗等6大场景，获公司级奖项，连续2年参展MWC & WAIC。
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="btn-primary">
@@ -79,23 +78,22 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    AI 工程顾问
+                    高级工程师 & 技术负责人
                   </h3>
-                  <p className="text-brand font-medium">独立咨询</p>
+                  <p className="text-brand font-medium">某知名信息技术公司（上市企业）</p>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
-                  2022 - 至今
+                  2020.06 - 2025.07
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                为多家企业提供 AI 技术咨询和产品开发服务，涵盖大语言模型应用、计算机视觉、
-                自然语言处理等领域。成功交付 50+ 项目，客户满意度 100%。
+                主导AI数据处理平台建设，覆盖全链路自动化管线，优化数据集构建与流转效率。牵头研发19+ AI RAG+Agent应用，获得公司级年度优秀交付物奖项。负责数据治理平台、数据中台平台功能开发，支撑公司销售签约客户3000w+RMB。
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">大语言模型</span>
-                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">产品架构</span>
-                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">技术咨询</span>
-                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">团队指导</span>
+                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">AI数据处理平台</span>
+                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">RAG+Agent应用</span>
+                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">数据治理</span>
+                <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs">团队管理</span>
               </div>
             </div>
 
@@ -103,23 +101,22 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    高级 AI 工程师
+                    数据中台后端开发
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">某知名科技公司</p>
+                  <p className="text-gray-600 dark:text-gray-400">某知名信息技术公司</p>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
-                  2019 - 2022
+                  2022.08 - 2023.10
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                负责 AI 平台建设和算法产品化，主导多个核心 AI 产品的技术架构设计和开发。
-                带领 10+ 人技术团队，建立了完整的 AI 工程化流程和规范。
+                负责中台底层框架开发，将数据治理平台集成至数据中台，拆分前后端分离架构。参与治理中心的数据标准、模型设计、资产地图建设，实现数据资产地图搜索和资产异常预警推送，提高数据使用效率200%。
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">机器学习</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">深度学习</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">团队管理</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">产品化</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">SpringCloud</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">微服务架构</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">数据治理</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">前后端分离</span>
               </div>
             </div>
 
@@ -127,23 +124,22 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    算法工程师
+                    数据治理平台后端开发
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">AI 创业公司</p>
+                  <p className="text-gray-600 dark:text-gray-400">某知名信息技术公司</p>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
-                  2018 - 2019
+                  2020.06 - 2022.08
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                从零开始构建公司的 AI 技术栈，负责算法研发、模型训练和部署优化。
-                在计算机视觉和自然语言处理领域积累了深厚的工程实践经验。
+                负责全生命周期数据治理平台开发，覆盖元数据管理、数据标准、血缘分析、数据质量、安全管控、数据资产地图等核心模块。实现元数据与业务系统打通，制定统一数据标准并构建可视化血缘图，提升任务元数据追溯效率90%+。
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">计算机视觉</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">NLP</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">模型优化</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">工程化</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">SpringBoot</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">数据治理</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">血缘分析</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">数据安全</span>
               </div>
             </div>
           </div>
@@ -166,7 +162,7 @@ export default function AboutPage() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">机器学习 / 深度学习</span>
+                      <span className="text-gray-700 dark:text-gray-300">Java / SpringCloud / 微服务</span>
                       <span className="text-brand">专家级</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -175,7 +171,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">大语言模型应用</span>
+                      <span className="text-gray-700 dark:text-gray-300">AI数据处理平台 / RAG</span>
                       <span className="text-brand">专家级</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -184,7 +180,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">Python / PyTorch / TensorFlow</span>
+                      <span className="text-gray-700 dark:text-gray-300">Python / AI应用开发</span>
                       <span className="text-brand">专家级</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -193,7 +189,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">云原生 / DevOps</span>
+                      <span className="text-gray-700 dark:text-gray-300">数据治理 / 数据中台</span>
                       <span className="text-green-600">熟练</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -202,7 +198,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">前端开发 / React / Next.js</span>
+                      <span className="text-gray-700 dark:text-gray-300">前端开发 / Vue / React</span>
                       <span className="text-green-600">熟练</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -219,7 +215,7 @@ export default function AboutPage() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">产品架构设计</span>
+                      <span className="text-gray-700 dark:text-gray-300">AI平台架构设计</span>
                       <span className="text-brand">专家级</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -228,7 +224,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">技术咨询</span>
+                      <span className="text-gray-700 dark:text-gray-300">企业级AI应用落地</span>
                       <span className="text-brand">专家级</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -237,7 +233,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">团队管理</span>
+                      <span className="text-gray-700 dark:text-gray-300">团队管理与培训</span>
                       <span className="text-green-600">熟练</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -246,7 +242,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">商业分析</span>
+                      <span className="text-gray-700 dark:text-gray-300">数据标准与治理</span>
                       <span className="text-green-600">熟练</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -255,7 +251,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">培训授课</span>
+                      <span className="text-gray-700 dark:text-gray-300">技术咨询与方案</span>
                       <span className="text-green-600">熟练</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">

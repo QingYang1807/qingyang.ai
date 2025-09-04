@@ -39,11 +39,17 @@ export default function RootLayout({
                 </span>
               </a>
               <nav className="hidden md:flex items-center gap-8">
+                <a href="/advantages" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  个人优势
+                </a>
                 <a href="/projects" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
                   项目案例
                 </a>
                 <a href="/about" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
                   关于我
+                </a>
+                <a href="/certificates" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
+                  荣誉证书
                 </a>
                 <a href="/posts" className="text-gray-600 hover:text-brand dark:text-gray-300 dark:hover:text-brand-400 transition-colors font-medium">
                   技术文章
@@ -76,21 +82,21 @@ export default function RootLayout({
                     <span className="font-bold text-lg text-gray-900 dark:text-gray-100">清扬 AI</span>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 max-w-md mb-4">
-                    专注于 AI 产品落地与工程实践，为企业和个人提供前沿的 AI 解决方案。一个人就是一家公司的全栈能力。
+                    5年Java & 数据平台开发、3年AI数据应用经验，主导企业级数据处理平台建设，覆盖采集-清洗-标注-增强-合成-评估-安全-回流全链路。累计交付30万+数据集，落地运营商、文旅、金融、医疗等6大场景。
                   </p>
                   <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                     <span>📍 北京，中国</span>
                     <span>⚡ 24小时响应</span>
-                    <span>✅ 100% 客户满意</span>
+                    <span>✅ 19+ AI应用落地</span>
                   </div>
                 </div>
                 
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">服务</h3>
                   <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                    <li><a href="/contact" className="hover:text-brand transition-colors">技术咨询</a></li>
-                    <li><a href="/contact" className="hover:text-brand transition-colors">产品开发</a></li>
-                    <li><a href="/contact" className="hover:text-brand transition-colors">企业培训</a></li>
+                    <li><a href="/contact" className="hover:text-brand transition-colors">AI数据处理平台</a></li>
+                    <li><a href="/contact" className="hover:text-brand transition-colors">RAG+Agent应用开发</a></li>
+                    <li><a href="/contact" className="hover:text-brand transition-colors">数据治理与中台</a></li>
                     <li><a href="/projects" className="hover:text-brand transition-colors">项目案例</a></li>
                   </ul>
                 </div>

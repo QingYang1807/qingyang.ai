@@ -19,19 +19,20 @@ export interface ProfileConfig {
 
 // 默认配置
 export const defaultProfile: ProfileConfig = {
-  name: '林清扬',
-  title: 'AI Engineering Consultant',
+  name: '清扬',
+  title: 'AI 全栈工程师 & 数据平台专家',
   email: 'contact@qingyang.ai',
-  phone: '+86 138-0000-0000',
+  phone: '+86 138-****-****',
   website: 'https://qingyang.ai',
   avatar: '/avatar.svg',
-  bio: '专注于 AI 产品落地与工程实践，为企业和个人提供前沿的 AI 解决方案。一个人就是一家公司的全栈能力。',
+  bio: '5年Java & 数据平台开发、3年AI数据应用经验，主导企业级数据处理平台建设，覆盖采集-清洗-标注-增强-合成-评估-安全-回流全链路。累计交付30万+数据集，落地运营商、文旅、金融、医疗等6大场景。',
   location: '北京，中国',
   skills: [
-    '机器学习模型部署专家',
+    'AI数据处理平台架构设计',
     '大语言模型应用开发', 
-    'AI 产品架构设计',
-    '企业AI战略咨询'
+    '企业级数据治理与中台建设',
+    '微服务架构与分布式系统',
+    'RAG/Agent/AI应用落地'
   ],
   social: {
     github: 'https://github.com/QIngYang1807',

@@ -16,6 +16,120 @@ type Project = {
 
 const projects: Project[] = [
   {
+    slug: 'chatbi-platform',
+    name: 'ChatBI 智能数据平台',
+    description: '创新性的商业智能平台，结合大语言模型技术实现自然语言查询和智能数据分析',
+    longDescription: '创新性的商业智能平台，结合大语言模型技术实现自然语言查询和智能数据分析。支持多数据源接入、实时数据处理、智能图表生成和业务洞察自动发现。通过 AI 助手让数据分析变得像聊天一样简单，降低 BI 使用门槛，提升业务决策效率。',
+    technologies: ['Vue.js', 'Apache Doris', 'Python', 'FastAPI', 'LangChain', 'ECharts', 'MySQL', 'Elasticsearch'],
+    category: 'AI 平台',
+    status: 'completed',
+    results: [
+      '数据查询效率提升 5倍',
+      '支持 10+ 种数据源',
+      '自然语言查询准确率 95%',
+      '业务洞察发现率提升 80%'
+    ],
+    href: 'https://chatbi.qingyang.ai',
+    featured: true
+  },
+  {
+    slug: 'efficient-office-system',
+    name: '高效办公系统',
+    description: '全方位的企业办公管理系统，集成项目管理、任务协作、文档管理等核心功能',
+    longDescription: '全方位的企业办公管理系统，集成了项目管理、任务协作、文档管理、日程安排、考勤管理等核心办公功能。采用现代化的前后端分离架构，支持多端同步，实时协作。通过智能化的工作流引擎和数据可视化分析，帮助企业提升管理效率，优化工作流程。',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Redis', 'Docker'],
+    category: '全栈开发',
+    status: 'completed',
+    results: [
+      '办公效率提升 40%',
+      '团队协作效率提升 60%',
+      '文档管理效率提升 80%',
+      '项目交付周期缩短 30%'
+    ],
+    href: 'https://work.qingyang.ai',
+    featured: true
+  },
+  {
+    slug: 'enterprise-customer-service',
+    name: '企业智能客服系统',
+    description: '为电商平台开发的企业级智能客服系统，集成最新的大语言模型技术',
+    longDescription: '为电商平台开发的企业级智能客服系统，集成了最新的大语言模型技术。支持多轮对话、情感分析、意图识别和知识库检索。通过智能路由将复杂问题转接给人工客服，实现了人机协作的最佳实践。',
+    technologies: ['Python', 'FastAPI', 'LangChain', 'Redis', 'PostgreSQL', 'Docker'],
+    category: 'AI 应用',
+    status: 'completed',
+    results: [
+      '90% 自动化回复率',
+      '客户满意度提升 35%',
+      '响应时间缩短 70%',
+      '人工成本降低 60%'
+    ],
+    featured: true
+  },
+  {
+    slug: 'ai-data-processing-platform',
+    name: 'AI 数据处理平台',
+    description: '企业级AI数据处理平台，覆盖全链路自动化管线',
+    longDescription: '主导企业级AI数据处理平台建设，覆盖数据采集、清洗、标注、增强、合成、评估、安全、回流全链路。通过工作流、Agent、智能批量标注等工具链研发，实现数据集构建自动化，数据标注/合成自动化，提效200%。累计交付30万+数据集，支撑DeepSeek R1模型训练和10+AI场景数据集支撑。',
+    technologies: ['Java', 'SpringCloud', 'Python', 'LangChain', 'RAG', 'Agent', 'Milvus', 'Whisper', 'PaddleOCR'],
+    category: 'AI 平台',
+    status: 'completed',
+    results: [
+      '累计交付30万+数据集',
+      '数据标注/合成自动化提效200%',
+      '支撑DeepSeek R1模型训练',
+      '覆盖10+AI场景数据集支撑'
+    ],
+    featured: true
+  },
+  {
+    slug: 'rag-agent-applications',
+    name: 'RAG+Agent AI应用',
+    description: '19+ AI智能应用，涵盖多行业场景落地',
+    longDescription: '牵头研发19+ AI RAG+Agent应用，包括合同结构化提取、制度定位问答、知识库问答、面试助手、售前售后电商专业客服、意图识别助手、文档生成、周报生成、代码生成、小红书爆款文案生成、智能客服、旅行行程规划、天气助手、AI行政助理、医疗诊断、参数提取等。建设3省文旅AI场景应用（行程规划助手）和数据集，入选政府数字化转型案例。',
+    technologies: ['Python', 'LangChain', 'RAG', 'Agent', 'ChatGLM4-9B', 'LoRA微调', 'Redis', 'MySQL'],
+    category: 'AI 应用',
+    status: 'completed',
+    results: [
+      '成功落地19+ AI应用',
+      '覆盖文旅、医疗、金融、电商等行业',
+      '入选政府数字化转型案例',
+      '获得公司级年度优秀交付物奖项'
+    ],
+    featured: true
+  },
+  {
+    slug: 'data-governance-platform',
+    name: '数据治理平台',
+    description: '全生命周期数据治理平台，支撑企业数字化转型',
+    longDescription: '负责全生命周期数据治理平台开发，覆盖元数据管理、数据标准、血缘分析、数据质量、安全管控、数据资产地图与数据运营等核心模块。实现元数据与业务系统打通，制定统一数据标准并构建可视化血缘图，提升任务元数据追溯效率90%+。推动平台在10+运营商省市部署，获行业客户书面表扬。',
+    technologies: ['Java', 'SpringBoot', 'Hibernate', 'MyBatis', 'Redis', 'Kafka', 'MySQL', 'Oracle', 'Vue', 'Element-ui'],
+    category: '数据平台',
+    status: 'completed',
+    results: [
+      '元数据追溯效率提升90%+',
+      '数据资产使用率提升80%',
+      '企业数据扫描安全合规达标率100%',
+      '客户决策效率提升100%'
+    ],
+    featured: true
+  },
+  {
+    slug: 'data-middle-platform',
+    name: '数据中台平台',
+    description: '企业级数据中台，实现数据治理与业务场景无缝对接',
+    longDescription: '负责数据中台底层框架开发，将数据治理平台集成至数据中台，拆分前后端分离架构。集成数据治理4个模块适配改造：数据标准、模型设计、数据资产管理、文档管理对接。实现数据资产地图搜索和资产异常短信飞书预警推送，提高数据使用效率200%，获得客户书面表扬。',
+    technologies: ['Java', 'SpringBoot', 'SpringCloud', 'MySQL', 'MyBatis', 'Redis', 'Kafka', 'Nacos', 'Vue', 'Element-ui'],
+    category: '数据平台',
+    status: 'completed',
+    results: [
+      '数据使用效率提升200%',
+      '支撑公司销售签约客户3000w+RMB',
+      '获得客户书面表扬',
+      '实现数据治理与业务场景无缝对接'
+    ],
+    featured: true
+  },
+  {
     slug: 'qingyang-ai-portal',
     name: '清扬 AI 企业门户',
     description: '现代化的个人品牌网站，采用企业级设计理念',
@@ -30,78 +144,11 @@ const projects: Project[] = [
       'SEO 优化完善'
     ],
     href: '/',
-    featured: true
-  },
-  {
-    slug: 'enterprise-chatbot',
-    name: '企业智能客服系统',
-    description: '基于大语言模型的智能客服解决方案',
-    longDescription: '为电商平台开发的企业级智能客服系统，集成了最新的大语言模型技术。支持多轮对话、情感分析、意图识别和知识库检索。通过智能路由将复杂问题转接给人工客服，实现了人机协作的最佳实践。',
-    technologies: ['Python', 'FastAPI', 'LangChain', 'Redis', 'PostgreSQL', 'Docker'],
-    category: 'AI 产品',
-    status: 'completed',
-    results: [
-      '90% 自动化回复率',
-      '客户满意度提升 35%',
-      '响应时间缩短 70%',
-      '人工成本降低 60%'
-    ],
-    featured: true
-  },
-  {
-    slug: 'ai-data-platform',
-    name: 'AI 数据处理平台',
-    description: '企业级机器学习数据处理和模型训练平台',
-    longDescription: '为大型制造企业构建的AI数据处理平台，支持海量工业数据的清洗、标注、特征工程和模型训练。提供可视化的数据流编排界面，支持分布式计算和模型版本管理。平台采用微服务架构，具备高可用性和横向扩展能力。',
-    technologies: ['Kubernetes', 'Apache Spark', 'MLflow', 'Apache Airflow', 'Kafka', 'Elasticsearch'],
-    category: '数据平台',
-    status: 'completed',
-    results: [
-      '数据处理效率提升 10倍',
-      '支持 PB 级数据处理',
-      '模型训练时间缩短 80%',
-      '平台可用性 99.9%'
-    ],
-    href: 'https://data.qingyang.ai/',
-    featured: true
-  },
-  {
-    slug: 'chatbi-platform',
-    name: 'ChatBI 智能数据平台',
-    description: '融合 AI 对话能力的企业级商业智能分析平台',
-    longDescription: '创新性的商业智能平台，结合大语言模型技术实现自然语言查询和智能数据分析。支持多数据源接入、实时数据处理、智能图表生成和业务洞察自动发现。通过 AI 助手让数据分析变得像聊天一样简单，降低 BI 使用门槛，提升业务决策效率。',
-    technologies: ['Vue.js', 'Apache Doris', 'Python', 'FastAPI', 'LangChain', 'ECharts', 'MySQL', 'Elasticsearch'],
-    category: 'BI 智能分析',
-    status: 'completed',
-    results: [
-      '数据查询效率提升 5倍',
-      '支持 10+ 种数据源',
-      '自然语言查询准确率 95%',
-      '业务洞察发现率提升 80%'
-    ],
-    href: 'https://chatbi.qingyang.ai',
-    featured: true
-  },
-  {
-    slug: 'smart-office-system',
-    name: '高效办公系统',
-    description: '一站式企业办公管理平台，提升团队协作效率',
-    longDescription: '全方位的企业办公管理系统，集成了项目管理、任务协作、文档管理、日程安排、考勤管理等核心办公功能。采用现代化的前后端分离架构，支持多端同步，实时协作。通过智能化的工作流引擎和数据可视化分析，帮助企业提升管理效率，优化工作流程。',
-    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Redis', 'Docker'],
-    category: '企业办公',
-    status: 'completed',
-    results: [
-      '办公效率提升 40%',
-      '团队协作效率提升 60%',
-      '文档管理效率提升 80%',
-      '项目交付周期缩短 30%'
-    ],
-    href: 'https://work.qingyang.ai',
-    featured: true
+    featured: false
   }
 ]
 
-const categories = ['全部', '全栈开发', 'AI 产品', '数据平台', 'BI 智能分析', '企业办公']
+const categories = ['全部', 'AI 平台', 'AI 应用', '数据平台', '全栈开发']
 
 export default function ProjectsPage() {
   const featuredProjects = projects.filter(p => p.featured)
