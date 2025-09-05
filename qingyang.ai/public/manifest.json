@@ -1,0 +1,23 @@
+{
+  "name": "清扬 AI - 智能科技的未来",
+  "short_name": "清扬 AI",
+  "description": "从深度学习到认知计算，清扬 AI 引领下一代技术革命。专注于 AI 产品落地与工程实践，为企业和个人提供前沿的AI解决方案。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["technology", "ai", "business"],
+  "lang": "zh-CN"
+}

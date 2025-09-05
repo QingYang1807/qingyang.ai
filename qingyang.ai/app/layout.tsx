@@ -7,13 +7,53 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://qingyang.ai'),
   title: {
-    default: '清扬 AI | qingyang.ai',
+    default: '清扬 AI - 智能科技的未来 | qingyang.ai',
     template: '%s | 清扬 AI'
   },
-  description: '清扬的个人门户：作品、动态、文章、社交链接与联系渠道。',
+  description: '从深度学习到认知计算，清扬 AI 引领下一代技术革命。清扬的个人门户：作品、动态、文章、社交链接与联系渠道。专注于 AI 产品落地与工程实践，为企业和个人提供前沿的AI解决方案。',
+  keywords: ['清扬', '清扬AI', 'AI工程师', '人工智能', '数据平台', '机器学习', '深度学习', 'RAG', 'Agent', '北京AI专家'],
+  authors: [{ name: '清扬', url: 'https://qingyang.ai' }],
+  creator: '清扬',
+  publisher: '清扬 AI',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://qingyang.ai',
+    siteName: '清扬 AI',
+    title: '清扬 AI - 智能科技的未来',
+    description: '从深度学习到认知计算，清扬 AI 引领下一代技术革命。专注于 AI 产品落地与工程实践，为企业和个人提供前沿的AI解决方案。',
+    images: [
+      {
+        url: '/avatar.svg',
+        width: 1200,
+        height: 630,
+        alt: '清扬 AI - 智能科技的未来',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '清扬 AI - 智能科技的未来',
+    description: '从深度学习到认知计算，清扬 AI 引领下一代技术革命。专注于 AI 产品落地与工程实践。',
+    images: ['/avatar.svg'],
+  },
   icons: {
-    icon: '/icon.svg'
-  }
+    icon: '/icon.svg',
+    shortcut: '/favicon.ico',
+    apple: '/icon.svg',
+  },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({

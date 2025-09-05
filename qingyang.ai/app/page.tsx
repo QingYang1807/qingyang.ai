@@ -4,8 +4,47 @@ import { GetProfile } from '@/lib/config'
 
 export default async function HomePage() {
   const profile = await GetProfile();
+  
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "清扬",
+    "alternateName": ["清扬AI", "QingYang AI"],
+    "jobTitle": "AI 全栈工程师 & 数据平台专家",
+    "description": "从深度学习到认知计算，清扬 AI 引领下一代技术革命。专注于 AI 产品落地与工程实践，为企业和个人提供前沿的AI解决方案。",
+    "url": "https://qingyang.ai",
+    "image": "https://qingyang.ai/avatar.svg",
+    "email": "contact@qingyang.ai",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "北京",
+      "addressCountry": "中国"
+    },
+    "knowsAbout": [
+      "AI数据处理平台架构设计",
+      "大语言模型应用开发",
+      "企业级数据治理与中台建设",
+      "微服务架构与分布式系统",
+      "RAG/Agent/AI应用落地"
+    ],
+    "alumniOf": "北京XX大学",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "清扬 AI"
+    },
+    "sameAs": [
+      "https://github.com/QIngYang1807",
+      "https://linkedin.com/in/qingyang"
+    ]
+  };
+
   return (
-    <main className="min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-hero">
         <div className="relative container-wide">
@@ -179,5 +218,6 @@ export default async function HomePage() {
         </div>
       </section>
     </main>
+    </>
   )
 }
