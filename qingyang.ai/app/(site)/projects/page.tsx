@@ -131,6 +131,24 @@ const projects: Project[] = [
     featured: true
   },
   {
+    slug: 'web-toolbox',
+    name: '网页工具箱',
+    description: '轻量、开箱即用的多功能网页工具集合',
+    longDescription: '集成12个实用工具的网页工具箱，包括Mermaid可视化渲染器、密码生成器、网页画板、番茄钟待办、LaTeX公式编辑器、Base64编解码、文件对比、Markdown编辑器、API请求工具、数据计算工具、轻量化日历和学习打卡面板。所有工具均支持本地存储，无需注册即可使用，提供完整的交互体验。',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Canvas API', 'LocalStorage', 'File API', 'Web APIs'],
+    category: '工具应用',
+    status: 'completed',
+    results: [
+      '集成12个实用工具',
+      '100% 本地化存储',
+      '零注册即可使用',
+      '完全响应式设计'
+    ],
+    href: 'https://tools.qingyang.ai',
+    image: '/images/projects/web-toolbox.svg',
+    featured: true
+  },
+  {
     slug: 'qingyang-ai-portal',
     name: '清扬 AI 企业门户',
     description: '现代化的个人品牌网站，采用企业级设计理念',
@@ -149,7 +167,7 @@ const projects: Project[] = [
   }
 ]
 
-const categories = ['全部', 'AI 平台', 'AI 应用', '数据平台', '全栈开发']
+const categories = ['全部', 'AI 平台', 'AI 应用', '数据平台', '全栈开发', '工具应用']
 
 export default function ProjectsPage() {
   const featuredProjects = projects.filter(p => p.featured)
@@ -202,6 +220,15 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredProjects.map(project => (
               <article key={project.slug} className="card-hover group">
+                {project.image && (
+                  <div className="mb-6 rounded-lg overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.name}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
